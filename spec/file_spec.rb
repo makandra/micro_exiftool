@@ -1,11 +1,13 @@
+# encoding: UTF-8
+
 require 'spec_helper'
 require 'tempfile'
 
-describe MicroExiftool::Image do
+describe MicroExiftool::File do
 
-  let(:sample_image_path) { File.join(File.dirname(__FILE__), 'assets', 'image.jpg') }
+  let(:sample_file_path) { File.join(File.dirname(__FILE__), 'assets', 'image.jpg') }
 
-  subject { described_class.new(sample_image_path) }
+  subject { described_class.new(sample_file_path) }
 
   describe '.new' do
 
@@ -20,7 +22,7 @@ describe MicroExiftool::Image do
 
   describe '#attributes' do
 
-    it 'returns prefixed image attributes as a hash' do
+    it 'returns prefixed file attributes as a hash' do
       subject.attributes.should include(
         'IPTC:ObjectName' => 'The IPTC Title',
         'IPTC:CopyrightNotice' => 'The IPTC Copyright',
@@ -41,16 +43,16 @@ describe MicroExiftool::Image do
 
   describe 'update!' do
 
-    let(:sample_image_copy) { Tempfile.new(['sample_image_copy', '.jpg']) }
-    let(:sample_image_copy_path) { sample_image_copy.path }
+    let(:sample_file_copy) { Tempfile.new(['sample_file_copy', '.jpg']) }
+    let(:sample_file_copy_path) { sample_file_copy.path }
 
     before do
-      sample_image_copy.write(File.read(sample_image_path))
-      sample_image_copy.close
+      sample_file_copy.write(File.read(sample_file_path))
+      sample_file_copy.close
     end
 
-    subject { described_class.new(sample_image_copy_path) }
-    let(:duplicate_subject) { described_class.new(sample_image_copy_path) }
+    subject { described_class.new(sample_file_copy_path) }
+    let(:duplicate_subject) { described_class.new(sample_file_copy_path) }
 
 
     it 'modifies the given attributes in the file' do
@@ -96,7 +98,7 @@ describe MicroExiftool::Image do
         'EXIF:Copyright' => 'The new EXIF Copyright',
       )
 
-      File.exist?(sample_image_copy_path + '_original').should eq false
+      File.exist?(sample_file_copy_path + '_original').should eq false
     end
 
     it 'can assign characters that might need escaping' do

@@ -7,21 +7,21 @@ module MicroExiftool
   class ExifToolError < StandardError; end
 
 
-  class Image
+  class File
 
     def initialize(path)
       @path = path.to_s
-      unless File.exist?(@path)
+      unless ::File.exist?(@path)
         raise NoSuchFile.new("No such file: #{@path}")
       end
     end
 
     def [](key)
-      image_attributes[key]
+      file_attributes[key]
     end
 
     def attributes
-      image_attributes.dup
+      file_attributes.dup
     end
 
     def update!(new_attributes)
@@ -35,15 +35,15 @@ module MicroExiftool
         stdin_data: update_json
       )
 
-      @image_attributes.merge!(new_attributes) if defined? @image_attributes
+      @file_attributes.merge!(new_attributes) if defined? @file_attributes
       true
     end
 
 
     private
 
-    def image_attributes
-      @image_attributes ||= load_attributes
+    def file_attributes
+      @file_attributes ||= load_attributes
     end
 
     def load_attributes
@@ -51,8 +51,9 @@ module MicroExiftool
       JSON.parse(result).first
     end
 
-    def run_exiftool(*arguments, **options)
-      stdout_string, stderr_string, status = Open3.capture3('exiftool', @path, *arguments, **options)
+    def run_exiftool(*arguments)
+      options = arguments.last.is_a?(Hash) ? arguments.pop : {}
+      stdout_string, stderr_string, status = Open3.capture3('exiftool', @path, *arguments, options)
       unless status.exitstatus == 0
         raise ExifToolError.new("Error running exiftool:\n#{stderr_string}")
       end
