@@ -1,0 +1,16 @@
+language: ruby
+before_install:
+  - wget http://www.sno.phy.queensu.ca/~phil/exiftool/Image-ExifTool-9.99.tar.gz
+  - tar -xzf Image-ExifTool-9.99.tar.gz
+  - cd Image-ExifTool-9.99
+  - perl Makefile.PL
+  - sudo make install
+  - exiftool -ver
+rvm:
+  - 1.9.3
+  - 2.1.2
+  - 2.2.2
+script: bundle exec rspec
+notifications:
+  email:
+    - fail@makandra.de
