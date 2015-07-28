@@ -4,7 +4,8 @@ before_install:
   - tar -xzf Image-ExifTool-9.99.tar.gz
   - cd Image-ExifTool-9.99
   - perl Makefile.PL
-  - sudo make install
+  - make
+  - export PATH=$PATH:$PWD
   - exiftool -ver
 rvm:
   - 1.9.3
