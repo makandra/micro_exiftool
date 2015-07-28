@@ -35,7 +35,7 @@ module MicroExiftool
         stdin_data: update_json
       )
 
-      @file_attributes.merge!(new_attributes) if defined? @file_attributes
+      @file_attributes = nil
       true
     end
 
