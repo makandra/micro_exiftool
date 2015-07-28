@@ -7,6 +7,7 @@ before_install:
   - make
   - export PATH=$PATH:$PWD
   - exiftool -ver
+  - bundle install --deployment --jobs=3 --retry=3
 rvm:
   - 1.9.3
   - 2.1.2
