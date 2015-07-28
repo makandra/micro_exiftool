@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Tobias Kraze"]
   spec.email         = ["tobias.kraze@makandra.de"]
   spec.summary       = %q{Minimal ruby wrapper around exiftool..}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/makandra/micro_exiftool"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
