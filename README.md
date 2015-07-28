@@ -29,6 +29,9 @@ Or install it yourself as:
 
 ## Usage
 
+All attributes are plain strings.
+
+
 ### Read attributes
 
 ```
@@ -50,7 +53,7 @@ file.update!(
 )
 ```
 
-This will update the exif attributes of the file in place.
+This will update the attributes of the file in place.
 
 Note that there is (currently) no validation that the fields are actually valid metadata fields. If you set an unknown field, it will be silently ignored.
 
