@@ -1,4 +1,4 @@
-# micro_exiftool
+# micro_exiftool [![Build Status](https://travis-ci.org/makandra/micro_exiftool.svg?branch=master)](https://travis-ci.org/makandra/micro_exiftool)
 
 micro_exiftool is an extremely basic ruby wrapper for the [ExifTool](http://www.sno.phy.queensu.ca/~phil/exiftool/) command line tool.
 
