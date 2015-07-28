@@ -1,5 +1,6 @@
-require "micro_exiftool/version"
+require 'micro_exiftool/image'
+require 'micro_exiftool/version'
 
 module MicroExiftool
-  # Your code goes here...
+
 end

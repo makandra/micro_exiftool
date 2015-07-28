@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = MicroExiftool::VERSION
   spec.authors       = ["Tobias Kraze"]
   spec.email         = ["tobias.kraze@makandra.de"]
-  spec.summary       = %q{Minimal ruby wrapper around exitfool..}
+  spec.summary       = %q{Minimal ruby wrapper around exiftool..}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rspec"
 
   spec.metadata['allowed_push_host'] = 'dont push for now'
 end
