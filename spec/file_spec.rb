@@ -133,6 +133,16 @@ describe MicroExiftool::File do
       }.should raise_error(MicroExiftool::ExifToolError, "Error running exiftool:\nsome error")
     end
 
+    it 'will give a useful error if exiftool is not installed' do
+      Open3.stub(:capture3).and_raise(Errno::ENOENT)
+
+      proc {
+        subject.update!(
+          'EXIF:Copyright' => 'The new EXIF Copyright',
+        )
+      }.should raise_error(MicroExiftool::ExifToolError, 'Exiftool not installed')
+    end
+
   end
 
 end

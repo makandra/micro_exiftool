@@ -58,6 +58,8 @@ module MicroExiftool
         raise ExifToolError.new("Error running exiftool:\n#{stderr_string}")
       end
       stdout_string
+    rescue Errno::ENOENT
+      raise ExifToolError.new('Exiftool not installed')
     end
 
   end
